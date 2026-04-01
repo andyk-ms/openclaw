@@ -13,6 +13,10 @@ function cronAgentTurnPayloadSchema(params: { message: TSchema; toolsAllow: TSch
       allowUnsafeExternalContent: Type.Optional(Type.Boolean()),
       lightContext: Type.Optional(Type.Boolean()),
       toolsAllow: Type.Optional(params.toolsAllow),
+      deliver: Type.Optional(Type.Boolean()),
+      channel: Type.Optional(Type.String()),
+      to: Type.Optional(Type.String()),
+      bestEffortDeliver: Type.Optional(Type.Boolean()),
     },
     { additionalProperties: false },
   );

@@ -693,6 +693,23 @@ function mergeCronPayload(existing: CronPayload, patch: CronPayloadPatch): CronP
   if (typeof patch.allowUnsafeExternalContent === "boolean") {
     next.allowUnsafeExternalContent = patch.allowUnsafeExternalContent;
   }
+  if (typeof patch.deliver === "boolean") {
+    next.deliver = patch.deliver;
+  }
+  if (typeof patch.channel === "string") {
+    next.channel = patch.channel;
+  }
+  if (typeof patch.to === "string") {
+    next.to = patch.to;
+  }
+  if (typeof patch.bestEffortDeliver === "boolean") {
+    next.bestEffortDeliver = patch.bestEffortDeliver;
+  }
+  if (Array.isArray(patch.toolsAllow)) {
+    next.toolsAllow = patch.toolsAllow.length > 0 ? patch.toolsAllow : undefined;
+  } else if ((patch as Record<string, unknown>).toolsAllow === null) {
+    delete next.toolsAllow;
+  }
   return next;
 }
 

@@ -506,7 +506,7 @@ export async function runEmbeddedAttempt(
             modelId: params.modelId,
             modelCompat: params.model.compat,
             modelApi: params.model.api,
-            modelContextWindowTokens: params.model.contextWindow,
+            modelContextWindowTokens: params.model.contextWindow ?? params.model.maxTokens ?? DEFAULT_CONTEXT_TOKENS,
             modelAuthMode: resolveModelAuthMode(params.model.provider, params.config),
             currentChannelId: params.currentChannelId,
             currentThreadTs: params.currentThreadTs,

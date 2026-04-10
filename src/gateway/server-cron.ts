@@ -473,6 +473,10 @@ export function buildGatewayCronService(params: {
                   },
                   `[Cron Failure] ${failureMessage}`,
                 );
+              } else if (failureDest.mode === "agent-turn") {
+                const { agentId } = resolveCronAgent(job.agentId);
+                params.deps.enqueueSystemEvent(`[Cron Failure] ${failureMessage}`, { agentId });
+                params.deps.requestHeartbeatNow({ reason: `cron:${job.id}:failure-dest` });
               }
             }
           }
